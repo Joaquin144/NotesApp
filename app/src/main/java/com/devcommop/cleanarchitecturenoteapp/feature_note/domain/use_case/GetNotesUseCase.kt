@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
+ * This is called as Business Logic which lies in domain unlike MVVM where VMs contained all of it
+ *
  * A use case should basically have one public function. We may name that function as execeute.
  *
  * And we can also use invoke function which helps us calling the class itself as a function. Both uphold clean architecture principles.
