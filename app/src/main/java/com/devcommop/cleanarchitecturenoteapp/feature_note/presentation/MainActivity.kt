@@ -1,4 +1,4 @@
-package com.devcommop.cleanarchitecturenoteapp
+package com.devcommop.cleanarchitecturenoteapp.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
