@@ -37,11 +37,11 @@ object AppModule {
 
     @Provides
     @Singleton
+    //rather than injecting all UseCases one by one, We wrap all those use cases into a data class and then inject this data class into all our ViewModels.
     fun providesNoteUseCase(repository: NoteRepository): NoteUseCases{
         return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository = repository),
             deleteNoteUseCase = DeleteNoteUseCase(repository = repository)
-
         )
     }
 
