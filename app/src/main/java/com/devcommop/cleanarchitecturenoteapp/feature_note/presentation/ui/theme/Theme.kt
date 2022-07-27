@@ -1,4 +1,4 @@
-package com.devcommop.cleanarchitecturenoteapp.ui.theme
+package com.devcommop.cleanarchitecturenoteapp.feature_note.presentation.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
