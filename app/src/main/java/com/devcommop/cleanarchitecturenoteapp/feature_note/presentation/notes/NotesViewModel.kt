@@ -24,26 +24,27 @@ class NotesViewModel @Inject constructor(private val noteUseCases: NoteUseCases)
     private var getNotesJob: Job? = null //purane wale flow/corotuine ko isme store karenge phir jab naya flow ayega tab isko cancel kar dnege
 
     init {
-        getNotes(noteOrder = NoteOrder.Date(OrderType.Descending))
+        getNotes(noteOrder = NoteOrder.Date(OrderType.Descending))//state.noteOrder bhi kar sakte the yahan par
     }
 
     /*
-    Rather than just keeping LiveData we will also have a state that tells UI what to show it. Our NotesState will contain :--
+    Rather than just keeping LiveData we will also have a state(wrapper for all variables that represent configuration of UI) that tells UI what to show it. Our NotesState will contain :--
     noteOrder, list of notes, order section ko collapse/expand karna
      */
 
     /**
      * Trigger this funciton from the UI to send events to it.
      *
-     * In traditional MVVM, UI had to detect Clicks etc. and had to call appropriate functions of ViewModel and for getting data we used 2 LiveData objects. But in Clean Architecture pattern UI only has to detect Clicks etc. and sends appropriate events to viewmodel. Then VM catches those events and calls appropriate functions and for getting data we use 2 State Objects.
+     * In traditional MVVM, UI had to detect Clicks etc. and had to call appropriate functions of ViewModel and for getting data we used 2 LiveData objects. But in Clean Architecture with Compose pattern UI only has to detect Clicks etc. and sends appropriate events to viewmodel. Then VM catches those events and calls appropriate functions and for getting data, and here we use 2 State Objects.
      */
     fun onEvent(event: NotesEvent){
         when(event){
             is NotesEvent.Order -> {
                 //Why are we using class --> Because to check if 2 events[classes] are equal == won't works it just checks for reference/address equality. So we suffix ::class to check if event ki classes are same or not.
-                //Meanwhile orderType ko == se check kar sakte hain kyuki woh object hai aur object ko == contents check ote hain in kotlin
+                //Meanwhile orderType ko == se check kar sakte hain kyuki woh object hai aur object ko == contents check hote hain in kotlin
+                //E! --> Would === have worked ? Why or Why not ?
                 if(state.value.noteOrder::class == event.noteOrder::class && state.value.noteOrder.orderType == event.noteOrder.orderType){
-                    return //Do nothing beacuse same user has selected current events again only
+                    return //Do nothing because same user has selected current events again only
                 }
                 getNotes(event.noteOrder)
             }

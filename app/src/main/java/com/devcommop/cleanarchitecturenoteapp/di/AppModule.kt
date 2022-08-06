@@ -21,7 +21,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    //We need context to have RoomDb so to get context we use ApplicationContext. To get ApplicationContext we pass Application in constructor of this fucntion. This Application is automatically provided by Hilt.
+    //We need context to have RoomDb so to get context we use ApplicationContext. To get ApplicationContext we pass Application in constructor of this fucntion. This Application is automatically provided by Hilt. This app varibale is provided automatically by Hilt and don't confuse that activity/fragment is providing it.
     fun provideNoteDatabase(app: Application): NoteDatabase{
         return Room.databaseBuilder(
             app.applicationContext,
