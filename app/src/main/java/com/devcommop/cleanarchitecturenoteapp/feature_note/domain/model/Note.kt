@@ -23,4 +23,4 @@ data class Note(
 /**
  * Shaandaar tareeka khud ki exception banane ka. Truly OP 😁
  */
-class InvalidNoteException(message: String): Exception(message = message)
+class InvalidNoteException(message: String): Exception()//(message = message)

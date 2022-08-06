@@ -22,7 +22,7 @@ object AppModule {
     @Provides
     @Singleton
     //We need context to have RoomDb so to get context we use ApplicationContext. To get ApplicationContext we pass Application in constructor of this fucntion. This Application is automatically provided by Hilt.
-    fun provideNoteDatabse(app: Application): NoteDatabase{
+    fun provideNoteDatabase(app: Application): NoteDatabase{
         return Room.databaseBuilder(
             app.applicationContext,
             NoteDatabase::class.java,//E! --> how to know what to use: X::class , X::class.java or X() ?
