@@ -2,9 +2,14 @@ package com.devcommop.cleanarchitecturenoteapp.feature_note.presentation.notes.c
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -24,12 +29,12 @@ fun NoteItem(
     modifier: Modifier,
     cornerRadius: Dp = 10.dp,
     cutCornerSize: Dp = 30.dp,
-    onDeleteClick: (Note) -> Unit
+    onDeleteClick: () -> Unit
 ) {
     Box(
         modifier = modifier
     ){
-        //Canvas only take predefined sizes and fillMaxSize doesn't works because it is decided at runtime
+        //Canvas only take predefined sizes and fillMaxSize doesn't works because it is decided at runtime.
         Canvas(modifier = Modifier.matchParentSize()){
             val clipPath = Path().apply {
                 lineTo(size.width - cutCornerSize.toPx(), 0f)
@@ -46,7 +51,7 @@ fun NoteItem(
                 )
                 drawRoundRect(
                     color = Color(
-                        ColorUtils.blendARGB(note.color, 0x000000, 0.2f)
+                        ColorUtils.blendARGB(note.color, 0x000000, 0.2f)//to darken the color we have used blendARGB
                     ),
                     topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
                     size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),
@@ -66,9 +71,25 @@ fun NoteItem(
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis//when text gets too big cut it off by using Ellipsis
             )
             Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = note.content,
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onSurface,
+                maxLines = 10,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+        IconButton(
+            onClick = onDeleteClick,
+            modifier = Modifier.align(Alignment.BottomEnd)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "Delete Note"
+            )
         }
     }
 

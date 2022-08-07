@@ -5,6 +5,11 @@ sealed class NoteOrder(val orderType: OrderType){//E! --> Why we put val here an
     class Date(orderType: OrderType): NoteOrder(orderType = orderType)
     class Color(orderType: OrderType): NoteOrder(orderType = orderType)
 
+    /**
+     * We will call this function when we need to change from Ascending to Descending or from Descending to Ascending.
+     *
+     * copy() function is by default provided in data class by Kotlin but in case of normal classes we need to implement our own copy() function
+     */
     fun copy(orderType: OrderType): NoteOrder{
         return when(this){
             is Title -> Title(orderType)
