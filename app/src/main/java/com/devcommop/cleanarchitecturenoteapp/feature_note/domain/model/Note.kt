@@ -13,7 +13,7 @@ data class Note(
     val content: String,
     val timeStamp: Long,
     val color: Int,
-    @PrimaryKey val id: Int? = null,
+    @PrimaryKey val id: Int? = null,//what is null id? What happens if we allow/don't allow auto-generate
 ){
     companion object{
         val noteColors = listOf(RedOrange, LightGreen, LightBlue, Violet, BabyBlue, RedPink)
