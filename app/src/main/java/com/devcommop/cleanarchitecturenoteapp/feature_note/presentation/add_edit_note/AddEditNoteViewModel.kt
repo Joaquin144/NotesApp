@@ -37,7 +37,7 @@ class AddEditNoteViewModel @Inject constructor(
     private val _noteColor = mutableStateOf(Note.noteColors.random().toArgb())
     val noteColor: State<Int> = _noteColor
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEvent>()//For some UI events we don't want to act upon them again and again while config changes. eg: Snackbar, notif ki alert etc.
     val event = _eventFlow.asSharedFlow()
 
     private var currentNoteId: Int? = null
@@ -47,7 +47,7 @@ class AddEditNoteViewModel @Inject constructor(
             if(noteId != -1){
                 viewModelScope.launch {
                     noteUseCases.getNoteUseCase(noteId)?.also { note -> //E! --> why also is used ?
-                        currentNoteId = note.id//koi sense hai is baat ki ?
+                        currentNoteId = note.id
                         _noteTitle.value = noteTitle.value.copy(
                             text = note.title,
                             isHintVisible = false
@@ -105,7 +105,7 @@ class AddEditNoteViewModel @Inject constructor(
                     }catch(e: InvalidNoteException){
                         _eventFlow.emit(
                             UiEvent.ShowSnackbar(
-                                message = e.message ?: "Couldn't save Not. Try Again"
+                                message = e.message ?: "Couldn't save Note. Check if Title or Description is empty."
                             )
                         )
                     }

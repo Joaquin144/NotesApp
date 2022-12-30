@@ -78,8 +78,7 @@ fun NotesScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),//$$$$ Causing undesirable look ??
-                    noteOrder = state.noteOrder
-                    ,
+                    noteOrder = state.noteOrder,
                     onOrderChange = { viewModel.onEvent(NotesEvent.Order(it)) }
                 )
             }
