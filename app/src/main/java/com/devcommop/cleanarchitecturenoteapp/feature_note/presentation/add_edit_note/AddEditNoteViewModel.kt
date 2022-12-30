@@ -22,7 +22,7 @@ class AddEditNoteViewModel @Inject constructor(
 ): ViewModel(){
 
     /*
-    In this class we won't wrap variables into one single state because we have text and as soon as even one character changes in text, the whole UI would get recomposed due to change in state. UInstead of that we would maintain a unique state for that text field so that only that particular field would recompose and not the whole UI.
+    In this class we won't wrap variables into one single state because we have text and as soon as even one character changes in text, the whole UI would get recomposed due to change in state. Instead of that we would maintain a unique state for that text field so that only that particular field would recompose and not the whole UI.
      */
     private val _noteTitle = mutableStateOf(NoteTextFieldState(
         hint = "Enter title..."

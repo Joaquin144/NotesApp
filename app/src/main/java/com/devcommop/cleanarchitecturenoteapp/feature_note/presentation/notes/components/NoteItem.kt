@@ -78,8 +78,8 @@ fun NoteItem(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
-                maxLines = 10,
-                overflow = TextOverflow.Ellipsis
+                maxLines = 10,//how many lines (of the content) we want to show on NotesScreen
+                overflow = TextOverflow.Ellipsis//when no space is there then ... three dots will be shown
             )
         }
         IconButton(

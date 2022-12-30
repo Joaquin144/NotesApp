@@ -14,7 +14,7 @@ class AddNoteUseCase(private val repository: NoteRepository) {
      */
     @Throws(InvalidNoteException::class)
     suspend operator fun invoke(note: Note){
-        if(note.title.isBlank()){//Ab viemodel ko batao ki title blank bheja hai woh. Ab billi ke gale me ghnati kon bandhe 🐈‍🛎️ . Toh ab uske liye bhot se tareeke hain. Jo hum use karnege woh -> ek excepytion class bana lenge
+        if(note.title.isBlank()){//Ab viemodel ko batao ki title blank bheja hai user ne; par billi ke gale me ghnati kon bandhe 🐈‍🛎️ . Toh ab uske liye bhot se tareeke hain. Jo hum use karnege woh -> ek exception class bana lenge
             throw InvalidNoteException("The title of note can't be empty.")
         }
         if(note.content.isBlank()){

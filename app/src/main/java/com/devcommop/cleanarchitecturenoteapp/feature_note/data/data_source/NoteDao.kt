@@ -11,7 +11,7 @@ interface NoteDao {
     fun getNotes(): Flow<List<Note>>
 
     @Query("SELECT * FROM note WHERE id = :id")
-    suspend fun getNoteById(id: Int): Note?//E! Can we do Flow<Note> here ? if it takes 2 sconds for room to find that particular note
+    suspend fun getNoteById(id: Int): Note?//E! Can we do Flow<Note> here rather than using suspend fucntion ?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note)

@@ -3,6 +3,7 @@ package com.devcommop.cleanarchitecturenoteapp.feature_note.presentation.notes.c
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.devcommop.cleanarchitecturenoteapp.feature_note.domain.util.NoteOrder
 import com.devcommop.cleanarchitecturenoteapp.feature_note.domain.util.OrderType
@@ -54,4 +55,13 @@ fun OrderSection(
             )
         }
     }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun PreviewOrderSection() {
+    OrderSection(
+        modifier = Modifier,
+        onOrderChange = {}
+    )
 }

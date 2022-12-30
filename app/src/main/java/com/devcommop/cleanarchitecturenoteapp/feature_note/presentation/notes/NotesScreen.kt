@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun NotesScreen(
     navController: NavController,
-    viewModel: NotesViewModel = hiltViewModel()
+    viewModel: NotesViewModel = hiltViewModel()//E! --> How VM will be injected here(we haven't defined in AppModule nor in MainAct's navgraph)
 ) {
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()//to show snackbars etc. we maintain a Scaffold state
@@ -76,7 +76,7 @@ fun NotesScreen(
                     OrderSection(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 16.dp),
+                            .padding(vertical = 16.dp),//$$$$ Causing undesirable look ??
                             noteOrder = state.noteOrder
                         ,
                         onOrderChange = { viewModel.onEvent(NotesEvent.Order(it)) }
@@ -101,8 +101,8 @@ fun NotesScreen(
                             //Now show the snackbar for certain amount of time:-------
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Note deleted",
-                                    actionLabel = "Undo"
+                                    message = "Note deleted successfully",
+                                    actionLabel = "Undo"//Action which the user can perform on the Snackbar
                                 )
                                 //Now apply the undo action
                                 if(result == SnackbarResult.ActionPerformed){
